@@ -1,8 +1,100 @@
-<html>
+﻿<html>
   <head>
     <title>SubDle - Guess the subway sandwich</title>
     <script src="subdle.js"></script>
   </head>
+  <style>
+    html {
+      --subway-green: #028940;
+      --subway-yellow: #FFC20D;
+      --incorrect-grey: #4a4a4a;
 
-  <body></body>
+      color: white;
+      font-family: sans-serif;
+    }
+
+    body {
+      background-color: var(--subway-green);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    body * {
+      max-width: 1200px;
+    }
+
+    .higher::before {
+      content: "🡅 ";
+    }
+
+    .lower::before {
+      content: "🡇 ";
+    }
+
+    .nearly {
+      background-color: #786219;
+    }
+
+    .correct {
+      background-color: #028940;
+    }
+
+    th {
+      background-color: var(--incorrect-grey);
+      padding: 10px;
+    }
+
+    table {
+      background-color: black;
+    }
+
+    @keyframes fall-in {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0%);
+        opacity: 100%;
+      }
+    }
+
+    #you-win[open] {
+      position: absolute;
+      left: 0;
+      bottom: 50%;
+      animation-name: fall-in;
+      animation-duration: 1s;
+    }
+  </style>
+  <body>
+  <img src="subdle.svg" alt="SubDle Logo">
+  <p style="font-size: large">Guess the subway sandwich. All values are for footlong subs in Vancouver, Canada. Prices are from DoorDash.</p>
+  <form action="#" id="game-form">
+    <input list="options" name="option" id="option" style="font-size: x-large" size="50">
+    <datalist id="options">
+    </datalist>
+    <button formaction="#" style="font-size: x-large">Guess</button>
+  </form>
+  <table id="guess-table">
+    <tr>
+    <th style="min-width: 200px">Sandwich</th>
+    <th style="min-width: 140px">Price $CAD</th>
+    <th style="min-width: 140px">Calories</th>
+    <th style="min-width: 140px">Sodium</th>
+    <th style="min-width: 140px">Protein</th>
+    <th style="min-width: 140px">Carbs</th>
+    <th style="min-width: 140px">Fat</th>
+    </tr>
+
+  </table>
+  <dialog id="you-win">
+    <h1>You Win!</h1>
+    <h2>It was Cold Cut Combo!</h2>
+    <p>You got it in 3 guesses</p>
+    <p>Play again tomorrow!</p>
+  </dialog>
+  </body>
 </html>
